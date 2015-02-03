@@ -1,4 +1,4 @@
-%%% general unification procedure from 'Prolog for Natural Language Processing", Annie Gal, et al., 1991
+%%% general unification procedure from "Prolog for Natural Language Processing", Annie Gal, et al., 1991
 
 %%% feature-value pairs are indicated by ':'
 %%% F:V1 unifies with F:V@ if V1=V2 or V1 and V2 are sets and V1 unifies with V2 (i.e., this procedure handles recursive unification
