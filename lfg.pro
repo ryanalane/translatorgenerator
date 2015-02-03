@@ -3,7 +3,7 @@
 :- reconsult('unify.pro').
 
 % S -> NP(up.subj=down / up.num=down.num), VP(up=down)
-s(s_node(NP,VP), S_Fstruct) --> np(NP_node, NP_Fstruct),
+s(s_node(NP_node, VP_node), S_Fstruct) --> np(NP_node, NP_Fstruct),
                                 { unify([],[subj:NP_Fstruct, num:Num], Partial_Fstruct_1),
                                 extract(NP_Fstruct, num:Num) },
 
@@ -13,8 +13,17 @@ s(s_node(NP,VP), S_Fstruct) --> np(NP_node, NP_Fstruct),
                                 complete(S_Fstruct,Predicate) }.
 
 
-% auxilary predicates
+% NP -> Det(up.det=down / up.num=down.num), N(up=down)
+np(np_node(Det_node, N_node), NP_Fstruct)  --> det(Det_node, Det_Fstruct),
+                                    { unify([], [num:Num,det:Det_Fstruct], Partial_Fstruct_1),
+                                    extract(Det_Fstruct, num:Num) },
 
+                                    n(N_node, N_Fstruct),
+                                    { unify(Partial_Fstruct_1, N_Fstruct, NP_Fstruct) }.
+
+
+
+% auxilary predicates
 extract([], Feature:Value) :- !,fail.
 extract([Feature:Value|_], Feature:Value).
 extract([Feature1:Value1|Rest], Feature2:Value2) :- extract(Rest, Feature2:Value2).
