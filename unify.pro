@@ -18,13 +18,13 @@ unify([],Anything,Anything) :-!.
 unify([Feature1:Value1|Rest1],[Feature1:Value1|Rest2],[Feature1:Value1|Result]) :- !, unify(Rest1,Rest2,Result).
 
 % same feature setvalue
-unify([Feature1:SetValue1|Rest1],[Feature1:SetValue2|Rest2],[Feature1:Result1|Result]) :- not(atom(SetValue1)), not(atom(SetValue)), unify(SetValue1,SetValue2,Result1), unify(Rest1,Rest2,Result), !.
+unify([Feature1:SetValue1|Rest1],[Feature1:SetValue2|Rest2],[Feature1:Result1|Result]) :- not(atom(SetValue1)), not(atom(SetValue2)), unify(SetValue1,SetValue2,Result1), unify(Rest1,Rest2,Result), !.
 
 % same feature different value
 unify([Feature1:Value1|Rest1],[Feature1:Value2|Rest2],Result) :- !, fail.
 
 % different features
-unify([Feature1:Value1|Rest],[Feature2:Value2|Rest2],Result) :- unify([Feature1:Value1],Rest2,NewRest2), unify(Rest1,[Feature2:Value2|NewRest2],Result), !.
+unify([Feature1:Value1|Rest1],[Feature2:Value2|Rest2],Result) :- unify([Feature1:Value1],Rest2,NewRest2), unify(Rest1,[Feature2:Value2|NewRest2],Result), !.
 
 % when THREE feature sets are partially specified, the result of unifying the first two may be compatible with, but not in the same order as the third.
 
