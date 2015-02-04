@@ -18,7 +18,10 @@ dic(boy, n, [pred:boy]).
 dic(cake, n, [pred:cake]).
 dic(fish, n, [pred:fish]).
 
-% Verbs
+% Root Verbs
 dic(buy, v, [pred:buy(subj,obj)]).
 dic(die, v, [pred:die(subj)]).
 dic(eat, v, [pred:eat(subj, opt(obj))]).
+
+% Past-tense Verbs
+dic(bought, v, V_Features) :- dic(v, vuy, Root_V_Features), unify([tense:past], Root_V_Features, V_Features).
