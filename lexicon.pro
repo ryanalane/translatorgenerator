@@ -3,7 +3,7 @@
 % lexicon --> dictionary for Nouns and Verbs
 
 lex(n, N_word, Features) :- dict(N_word, n, N_Features),
-                            unify([num:sing, N_Features, Features).
+                            unify([num:sing], N_Features, Features).
 
 lex(v, V_word, V_Features) :- dic(V_word, v, V_Features), extract(V_Features, tense:past).
 lex(v, V_word, V_Features) :- dic(V_word, v, V_Features1), unify([num:plur],V_Features1, V_Features).
