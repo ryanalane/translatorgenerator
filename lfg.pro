@@ -42,7 +42,7 @@ extract([], Feature:Value) :- !,fail.
 extract([Feature:Value|_], Feature:Value).
 extract([Feature1:Value1|Rest], Feature2:Value2) :- extract(Rest, Feature2:Value2).
 
-complete(Fstruct, Predicate) :- Predicate=..[_|Frame], satisfied(Frame, F).
+complete(Fstruct, Predicate) :- Predicate=..[_|Frame], satisfied(Frame, Fstruct).
 
 satisfied([], _).
 satisfied([opt(_)], Fstruct).
