@@ -21,6 +21,11 @@ np(np_node(Det_node, N_node), NP_Fstruct)  --> det(Det_node, Det_Fstruct),
                                     n(N_node, N_Fstruct),
                                     { unify(Partial_Fstruct_1, N_Fstruct, NP_Fstruct) }.
 
+% VP -> V(up=down), NP(up.obj=down) (transitive verb phrase)
+%% TODO: Why is the v_node(V_node) structure repeated (resulting in `v_node(v_node(V), V_Fstruct) --> [V]`)?
+% vp(vp_node(v_node(V_node), NP_node), VP_Fstruct) -->
+
+%
 
 
 % auxilary predicates
