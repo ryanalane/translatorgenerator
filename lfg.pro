@@ -22,7 +22,6 @@ np(np_node(Det_node, N_node), NP_Fstruct)  --> det(Det_node, Det_Fstruct),
                                     { unify(Partial_Fstruct_1, N_Fstruct, NP_Fstruct) }.
 
 % VP -> V(up=down), NP(up.obj=down) (transitive verb phrase)
-%% TODO: Why is the v_node(V_node) structure repeated (resulting in `v_node(v_node(V), V_Fstruct) --> [V]`)?
 % vp(vp_node(v_node(V_node), NP_node), VP_Fstruct) -->
 
 % VP -> V(up=down) (intransitive verb phrase)
@@ -30,8 +29,8 @@ vp(vp_node(v_node(V_node)), VP_Fstruct) --> v(V_node, VP_Fstruct).
 
 % rules for terminal symbols
 n(n_node(N_word), N_Fstruct) --> [N_word], { lex(n, N_word, N_Fstruct) }.
-v(v_node(V_word), V_Fstruct) --> [V_word], { lex(n, V_word, V_Fstruct) }.
-det(det_node(D_word), D_Fstruct) --> [D_word], { lex(n, D_word, D_Fstruct) }.
+v(v_node(V_word), V_Fstruct) --> [V_word], { lex(v, V_word, V_Fstruct) }.
+det(det_node(D_word), D_Fstruct) --> [D_word], { lex(det, D_word, D_Fstruct) }.
 
 % dictionary
 :- reconsult('lexicon.pro').
