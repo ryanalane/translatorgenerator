@@ -23,8 +23,8 @@ dic(fish, n, [pred:fish]).
 % Root Verbs
 dic(buy, v, [pred:buy(subj,obj)]).
 dic(die, v, [pred:die(subj)]).
-dic(eat, v, [pred:eat(subj, opt(obj))]).
-dic(sleep, v, [pred:sleep(obj)]).
+dic(eat, v, [pred:eat(subj, optional(obj))]).
+dic(sleep, v, [pred:sleep(subj)]).
 
 % Past-tense Verbs
 dic(bought, v, V_Features) :- dic(buy, v, Root_V_Features), unify([tense:past], Root_V_Features, V_Features).
