@@ -10,7 +10,7 @@ s(s_node(NP_node, VP_node), S_Fstruct) --> np(NP_node, NP_Fstruct),
                                 vp(VP_node, VP_Fstruct),
                                 { unify(Partial_Fstruct_1, VP_Fstruct, S_Fstruct),
                                 extract(VP_Fstruct, pred:Predicate),
-                                complete(S_Fstruct,Predicate) }.
+                                complete(S_Fstruct, Predicate) }.
 
 
 % NP -> Det(up.det=down / up.num=down.num), N(up=down)
@@ -44,7 +44,7 @@ extract([Feature1:Value1|Rest], Feature2:Value2) :- extract(Rest, Feature2:Value
 complete(Fstruct, Predicate) :- Predicate=..[_|Frame], satisfied(Frame, Fstruct).
 
 satisfied([], _).
-satisfied([opt(_)], Fstruct).
-satisfied([opt(_)|Rest], Fstruct) :- satisfied(Rest, Fstruct).
+satisfied([optional(_)], Fstruct).
+satisfied([optional(_)|Rest], Fstruct) :- satisfied(Rest, Fstruct).
 satisfied([Case], Fstruct) :- unify([Case:[pred:_]], Fstruct, Fstruct).
 satisfied([Case|Rest], Fstruct) :- unify([Case:[pred:_]], Fstruct, Fstruct), satisfied(Rest, Fstruct).
