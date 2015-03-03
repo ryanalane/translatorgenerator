@@ -8,7 +8,7 @@
 translate(SourceText, TargetText) :-
     s(_, Source_Fstruct, SourceText,[]),
     lex_translate(Source_Fstruct, Target_Fstruct),
-    hu_s(_, Target_Fstruct, TargetText,[]).
+    hu_s(_, Target_Fstruct, TargetText, []).
 
 % translation of lexical entries 
 lex_translate([],[]).
