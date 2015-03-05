@@ -2,8 +2,7 @@
 
 % lexicon --> dictionary for Nouns and Verbs
 
-lex(n, N_word, Features) :- dic(N_word, n, N_Features),
-                            unify([num:sing], N_Features, Features).
+lex(n, N_word, Features) :- dic(N_word, n, Features).
 
 lex(v, V_word, V_Features) :- dic(V_word, v, V_Features), extract(V_Features, tense:past).
 
@@ -12,11 +11,15 @@ lex(v, V_word, V_Features) :- dic(V_word, v, V_Features1), unify([num:plur],V_Fe
 lex(v, V_word, [num:sing|V_Features]) :- dic(V_word, v, V_Features).
 
 % lex(det, those, [num:plur]).
-lex(det, that, [num:sing]).
 lex(det, the, [num:_]).
+lex(det, that, [num:sing]).
+lex(det, those, [num:plur]).
+lex(det, this, [num:sing]).
+lex(det, these, [num:plur]).
 
 % Nouns
-dic(boy, n, [pred:boy]).
+dic(boy, n, [pred:boy, num:sing]).
+dic(boys, n, [pred:boy, num:plur]).
 dic(cake, n, [pred:cake]).
 dic(fish, n, [pred:fish]).
 
