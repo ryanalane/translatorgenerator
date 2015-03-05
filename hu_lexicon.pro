@@ -3,16 +3,18 @@
 
 % lexicon --> dictionary for Nouns and Verbs
 
-hu_lex(n, N_word, Features) :- hu_dic(N_word, n, N_Features),
-                            unify([num:sing], N_Features, Features).
+hu_lex(n, N_word, Features) :- hu_dic(N_word, n, Features).
 
 hu_lex(v, V_word, V_Features) :- hu_dic(V_word, v, V_Features), extract(V_Features, tense:past).
 
+% Determiners
 hu_lex(det, az, [num:sing]).
+hu_lex(det, azok, [num:plur]).
 hu_lex(det, a, [num:_]).
 
 % Nouns
-hu_dic(fiú, n, [pred:fiú]).
+hu_dic(fiú, n, [pred:fiú, num:sing]).
+hu_dic(fiúk, n, [pred:fiú, num:plur]).
 hu_dic(torta, n, [pred:torta]).
 hu_dic(hal, n, [pred:hal]).
 
