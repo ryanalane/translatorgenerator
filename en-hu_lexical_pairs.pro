@@ -1,4 +1,4 @@
-%%% 'hu_lexical_pairs.pro'
+%%% 'en-hu_lexical_pairs.pro'
 %%% English --> Hungarian lexical pairs
 
 % lexical translations
