@@ -26,6 +26,6 @@ hu_np(np_node(Det_node, N_node), NP_Fstruct)  --> hu_det(Det_node, Det_Fstruct),
 hu_vp(vp_node(v_node(V_node)), VP_Fstruct) --> hu_v(V_node, VP_Fstruct).
 
 % rules for terminal symbols
-hu_n(n_node(N_word), N_Fstruct) --> [N_word], { hu_lex(n, N_word, N_Fstruct) }.
-hu_v(v_node(V_word), V_Fstruct) --> [V_word], { hu_lex(v, V_word, V_Fstruct) }.
-hu_det(det_node(D_word), D_Fstruct) --> [D_word], { hu_lex(det, D_word, D_Fstruct) }.
+hu_n(n_node(N_word), N_Fstruct) --> [N_word], { hu_lex(N_word, n, N_Fstruct) }.
+hu_v(v_node(V_word), V_Fstruct) --> [V_word], { hu_lex(V_word, v, V_Fstruct) }.
+hu_det(det_node(D_word), D_Fstruct) --> [D_word], { hu_lex(D_word, det, D_Fstruct) }.

@@ -28,9 +28,9 @@ en_np(np_node(Det_node, N_node), NP_Fstruct)  --> en_det(Det_node, Det_Fstruct),
 en_vp(vp_node(v_node(V_node)), VP_Fstruct) --> en_v(V_node, VP_Fstruct).
 
 % rules for terminal symbols
-en_n(n_node(N_word), N_Fstruct) --> [N_word], { en_lex(n, N_word, N_Fstruct) }.
-en_v(v_node(V_word), V_Fstruct) --> [V_word], { en_lex(v, V_word, V_Fstruct) }.
-en_det(det_node(D_word), D_Fstruct) --> [D_word], { en_lex(det, D_word, D_Fstruct) }.
+en_n(n_node(N_word), N_Fstruct) --> [N_word], { en_lex(N_word, n, N_Fstruct) }.
+en_v(v_node(V_word), V_Fstruct) --> [V_word], { en_lex(V_word, v, V_Fstruct) }.
+en_det(det_node(D_word), D_Fstruct) --> [D_word], { en_lex(D_word, det, D_Fstruct) }.
 
 % English lexicon
 :- reconsult('en_lexicon.pro').
