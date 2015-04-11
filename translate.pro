@@ -1,14 +1,22 @@
 %%% interlingua translation example from "Prolog for Natural Language Processing", Annie Gal, et al., 1991
 %%% translation based on LFG-like structure
 
+:- reconsult('input.pro').
 :- reconsult('en_syntax.pro').
 :- reconsult('hu_syntax.pro').
 :- reconsult('en-hu_lexical_pairs.pro').
 
 translate(SourceText, TargetText) :-
-    en_s(_, Source_Fstruct, SourceText,[]),
+  sentences_lists_from_text(SourceSentences, SourceText),
+  translate_sentences(SourceSentences, TargetSentences),
+  sentences_text_from_lists(TargetText, TargetSentences).
+
+translate_sentences([],[]).
+translate_sentences([SourceSentence|RestOfSourceSentences], [TargetSentence|RestOfTargetSentences]) :-
+    en_s(_, Source_Fstruct, SourceSentence,[]),
     lex_translate(Source_Fstruct, Target_Fstruct),
-    hu_s(_, Target_Fstruct, TargetText, []).
+    hu_s(_, Target_Fstruct, TargetSentence, []),
+    translate_sentences(RestOfSourceSentences,RestOfTargetSentences).
 
 % translation of lexical entries 
 lex_translate([],[]).
