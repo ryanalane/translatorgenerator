@@ -10,12 +10,13 @@ hu_lex(azok, det, [num:plur]).
 hu_lex(a, det, [num:_]).
 
 % Nouns
-hu_dic(fiú, n, [pred:fiú, begin:consonant, end:vowel, harmony:back]).
-hu_dic(torta, n, [pred:torta, begin:consonant, end:vowel_lengthen, harmony:back]).
-hu_dic(hal, n, [pred:hal, begin:consonant, end:consonant, harmony:back]).
-hu_dic(szemüveg, n, [pred:szemüveg, begin:consonant, end:consonant, harmony:unrounded]).
+% hu_dic(Lexeme, n, N_Features, MorphologyFeatures). 
+hu_dic(fiú, n, [pred:fiú], [begin:consonant, end:vowel, harmony:back]).
+hu_dic(torta, n, [pred:torta], [begin:consonant, end:vowel_lengthen, harmony:back]).
+hu_dic(hal, n, [pred:hal], [begin:consonant, end:consonant, harmony:back]).
+hu_dic(szemüveg, n, [pred:szemüveg], [begin:consonant, end:consonant, harmony:unrounded]).
 
-%% Hungarian Morphological Rules
+%%% Hungarian Morphological Rules
 lengthen_ending_vowel(UnlengthenedWord, LengthenedWord):-
   sub_atom(UnlengthenedWord, _, 1, 0, Vowel),
   sub_atom(UnlengthenedWord, 0, _, 1, PartialWord),
@@ -31,38 +32,38 @@ hu_plur(halak, hal).
 
 % Plural morphology rules
 hu_plur(Plural, Lexeme) :-
-  hu_dic(Lexeme, n, Lexeme_N_Features),
-  extract(Lexeme_N_Features, end:vowel),
+  hu_dic(Lexeme, n, _, MorphologyFeatures),
+  extract(MorphologyFeatures, end:vowel),
   atom_concat(Lexeme, 'k', Plural).
 hu_plur(Plural, Lexeme) :-
-  hu_dic(Lexeme, n, Lexeme_N_Features),
-  extract(Lexeme_N_Features, end:vowel_lengthen),
+  hu_dic(Lexeme, n, _, MorphologyFeatures),
+  extract(MorphologyFeatures, end:vowel_lengthen),
   lengthen_ending_vowel(Lexeme, LengthenedLexeme),
   atom_concat(LengthenedLexeme, 'k', Plural).
 hu_plur(Plural, Lexeme) :-
-  hu_dic(Lexeme, n, Lexeme_N_Features),
-  extract(Lexeme_N_Features, end:consonant),
-  extract(Lexeme_N_Features, harmony:back),
+  hu_dic(Lexeme, n, _, MorphologyFeatures),
+  extract(MorphologyFeatures, end:consonant),
+  extract(MorphologyFeatures, harmony:back),
   atom_concat(Lexeme, 'ok', Plural).
 hu_plur(Plural, Lexeme) :-
-  hu_dic(Lexeme, n, Lexeme_N_Features),
-  extract(Lexeme_N_Features, end:consonant),
-  extract(Lexeme_N_Features, harmony:unrounded),
+  hu_dic(Lexeme, n, _, MorphologyFeatures),
+  extract(MorphologyFeatures, end:consonant),
+  extract(MorphologyFeatures, harmony:unrounded),
   atom_concat(Lexeme, 'ek', Plural).
 hu_plur(Plural, Lexeme) :-
-  hu_dic(Lexeme, n, Lexeme_N_Features),
-  extract(Lexeme_N_Features, end:consonant),
-  extract(Lexeme_N_Features, harmony:rounded),
+  hu_dic(Lexeme, n, _, MorphologyFeatures),
+  extract(MorphologyFeatures, end:consonant),
+  extract(MorphologyFeatures, harmony:rounded),
   atom_concat(Lexeme, 'ök', Plural).
 
 % Match Plural/Singular lexical entries
 hu_lex(Plural, n, N_Features) :-
   hu_plur(Plural, Lexeme),
-  hu_dic(Lexeme, n, Lexeme_N_Features),
+  hu_dic(Lexeme, n, Lexeme_N_Features, _),
   unify([num:plur], Lexeme_N_Features, N_Features).
 
 hu_lex(Lexeme, n, N_Features) :- 
-  hu_dic(Lexeme, n, Lexeme_N_Features),
+  hu_dic(Lexeme, n, Lexeme_N_Features, _),
   unify([num:sing], Lexeme_N_Features, N_Features).
 
 % Root Verbs
