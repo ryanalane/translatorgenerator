@@ -4,7 +4,8 @@
 :- reconsult('input.pro').
 :- reconsult('en_syntax.pro').
 :- reconsult('hu_syntax.pro').
-:- reconsult('en-hu_lexical_pairs.pro').
+:- reconsult('en_lexical_pairs.pro').
+:- reconsult('hu_lexical_pairs.pro').
 
 translate(SourceText, TargetText) :-
   (var(SourceText)
@@ -26,11 +27,11 @@ translate_sentences([SourceSentence|RestOfSourceSentences], [TargetSentence|Rest
 % translation of lexical entries 
 lex_translate([],[]).
 lex_translate([pred:SourceWord|SourceRest], [pred:TargetWord|TargetRest]) :-
-    lex_pair(SourceWord, TargetWord),
+    en_lex_pair(Sememe, SourceWord),
+    hu_lex_pair(Sememe, TargetWord),
     !,
     lex_translate(SourceRest, TargetRest).
 lex_translate([Attribute:SourceValue|SourceRest], [Attribute:TargetValue|TargetRest]) :-
     lex_translate(SourceValue, TargetValue),
     lex_translate(SourceRest, TargetRest).
-lex_translate(Value, Value). % the lexical translation has already been processed
-
+lex_translate(Value, Value). % besides the predicate (which is translate), copy over all Fstruct values unchanged
