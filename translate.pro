@@ -7,9 +7,14 @@
 :- reconsult('en-hu_lexical_pairs.pro').
 
 translate(SourceText, TargetText) :-
-  sentences_lists_from_text(SourceSentences, SourceText),
+  (var(SourceText)
+  -> sentences_text_to_lists(TargetText, TargetSentences),
   translate_sentences(SourceSentences, TargetSentences),
-  sentences_text_from_lists(TargetText, TargetSentences).
+  sentences_text_to_lists(SourceText, SourceSentences)
+  ; sentences_text_to_lists(SourceText, SourceSentences),
+  translate_sentences(SourceSentences, TargetSentences),
+  sentences_text_to_lists(TargetText, TargetSentences)
+  ).
 
 translate_sentences([],[]).
 translate_sentences([SourceSentence|RestOfSourceSentences], [TargetSentence|RestOfTargetSentences]) :-
