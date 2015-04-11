@@ -16,14 +16,14 @@ hu_s(s_node(NP_node, VP_node), S_Fstruct) --> hu_np(NP_node, NP_Fstruct),
 
 % NP -> Det(up.det=down / up.num=down.num), N(up=down)
 hu_np(np_node(Det_node, N_node), NP_Fstruct)  --> hu_det(Det_node, Det_Fstruct),
-                                    { unify([], [num:Num,det:Det_Fstruct], Partial_Fstruct_1),
+                                    { unify([], [num:Num, det:Det_Fstruct], Partial_Fstruct_1),
                                     extract(Det_Fstruct, num:Num) },
 
                                     hu_n(N_node, N_Fstruct),
                                     { unify(Partial_Fstruct_1, N_Fstruct, NP_Fstruct) }.
 
 % VP -> V(up=down) (intransitive verb phrase)
-hu_vp(vp_node(v_node(V_node)), VP_Fstruct) --> hu_v(V_node, VP_Fstruct).
+hu_vp(vp_node(V_node), VP_Fstruct) --> hu_v(V_node, VP_Fstruct).
 
 % rules for terminal symbols
 hu_n(n_node(N_word), N_Fstruct) --> [N_word], { hu_lex(N_word, n, N_Fstruct) }.
