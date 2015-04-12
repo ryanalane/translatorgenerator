@@ -5,17 +5,44 @@
 hu_lex(V_word, v, V_Features) :- hu_dic(V_word, v, V_Features), extract(V_Features, tense:past).
 
 % Determiners
-% hu_dic(Lexeme, det, Lexeme_Det_Features).
-hu_dic(a, det, [pred:a, num:_]).
-hu_dic(az, det, [pred:az]).
-hu_dic(ez, det, [pred:ez]).
+% hu_dic(Lexeme, det, Lexeme_Det_Features, Lexeme_Morphology_Features).
+hu_dic(a, det, [pred:a, num:_], []).
+hu_dic(az, det, [pred:az], []).
+hu_dic(ez, det, [pred:ez], []).
+hu_dic(a, helper_det, [], []).
 
-% hu_lex(MorphologizedAtom, det, Det_Features).
-hu_lex(a, det, Det_Features):- hu_dic(a, det, Det_Features).
-hu_lex(az, det, Det_Features):- hu_dic(az, det, Lexeme_Det_Features), unify([num:sing], Lexeme_Det_Features, Det_Features).
-hu_lex(azok, det, Det_Features):- hu_dic(az, det, Lexeme_Det_Features), unify([num:plur], Lexeme_Det_Features, Det_Features).
-hu_lex(ez, det, Det_Features):- hu_dic(ez, det, Lexeme_Det_Features), unify([num:sing], Lexeme_Det_Features, Det_Features).
-hu_lex(ezek, det, Det_Features):- hu_dic(ez, det, Lexeme_Det_Features), unify([num:plur], Lexeme_Det_Features, Det_Features).
+% hu_lex(MorphologizedAtom, det, Det_Features, Det_Morphology_Features).
+hu_lex(a, det, Lexeme_Det_Features, Det_Morphology_Features) :-
+  hu_dic(a, det, Lexeme_Det_Features, Lexeme_Morphology_Features),
+  unify([precedes:consonant], Lexeme_Morphology_Features, Det_Morphology_Features).
+
+hu_lex(az, det, Lexeme_Det_Features, Det_Morphology_Features) :-
+  hu_dic(a, det, Lexeme_Det_Features, Lexeme_Morphology_Features),
+  unify([precedes:vowel], Lexeme_Morphology_Features, Det_Morphology_Features).
+
+hu_lex(az, det, Det_Features, Lexeme_Morphology_Features) :-
+  hu_dic(az, det, Lexeme_Det_Features, Lexeme_Morphology_Features),
+  unify([num:sing], Lexeme_Det_Features, Det_Features).
+
+hu_lex(azok, det, Det_Features, Lexeme_Morphology_Features) :-
+  hu_dic(az, det, Lexeme_Det_Features, Lexeme_Morphology_Features),
+  unify([num:plur], Lexeme_Det_Features, Det_Features).
+
+hu_lex(ez, det, Det_Features, Lexeme_Morphology_Features) :-
+  hu_dic(ez, det, Lexeme_Det_Features, Lexeme_Morphology_Features),
+  unify([num:sing], Lexeme_Det_Features, Det_Features).
+
+hu_lex(ezek, det, Det_Features, Lexeme_Morphology_Features) :-
+  hu_dic(ez, det, Lexeme_Det_Features, Lexeme_Morphology_Features),
+  unify([num:plur], Lexeme_Det_Features, Det_Features).
+
+hu_lex(a, helper_det, Lexeme_Det_Features, Det_Morphology_Features) :-
+  hu_dic(a, helper_det, Lexeme_Det_Features, Lexeme_Morphology_Features),
+  unify([precedes:consonant], Lexeme_Morphology_Features, Det_Morphology_Features).
+
+hu_lex(az, helper_det, Lexeme_Det_Features, Det_Morphology_Features) :-
+  hu_dic(a, helper_det, Lexeme_Det_Features, Lexeme_Morphology_Features),
+  unify([precedes:vowel], Lexeme_Morphology_Features, Det_Morphology_Features).
 
 % Nouns
 % hu_dic(Lexeme, n, N_Features, MorphologyFeatures). 
@@ -66,13 +93,13 @@ hu_plur(Plural, Lexeme) :-
   atom_concat(Lexeme, 'ök', Plural).
 
 % Match Plural/Singular lexical entries
-hu_lex(Plural, n, N_Features) :-
+hu_lex(Plural, n, N_Features, Lexeme_Morphology_Features) :-
   hu_plur(Plural, Lexeme),
-  hu_dic(Lexeme, n, Lexeme_N_Features, _),
+  hu_dic(Lexeme, n, Lexeme_N_Features, Lexeme_Morphology_Features),
   unify([num:plur], Lexeme_N_Features, N_Features).
 
-hu_lex(Lexeme, n, N_Features) :- 
-  hu_dic(Lexeme, n, Lexeme_N_Features, _),
+hu_lex(Lexeme, n, N_Features, Lexeme_Morphology_Features) :- 
+  hu_dic(Lexeme, n, Lexeme_N_Features, Lexeme_Morphology_Features),
   unify([num:sing], Lexeme_N_Features, N_Features).
 
 % Root Verbs
