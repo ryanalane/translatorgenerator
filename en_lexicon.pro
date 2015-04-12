@@ -11,11 +11,17 @@ en_lex(V_word, v, V_Features) :- en_dic(V_word, v, V_Features1), unify([num:plur
 en_lex(V_word, v, [num:sing|V_Features]) :- en_dic(V_word, v, V_Features).
 
 % Determiners
-en_lex(the, det, [num:_]).
-en_lex(that, det, [num:sing]).
-en_lex(those, det, [num:plur]).
-en_lex(this, det, [num:sing]).
-en_lex(these, det, [num:plur]).
+% en_dic(Lexeme, det, Lexeme_Det_Features).
+en_dic(the, det, [pred:the, num:_]).
+en_dic(that, det, [pred:that]).
+en_dic(this, det, [pred:this]).
+
+% en_lex(MorphologizedAtom, det, Det_Features).
+en_lex(the, det, Det_Features):- en_dic(the, det, Det_Features).
+en_lex(that, det, Det_Features):- en_dic(that, det, Lexeme_Det_Features), unify([num:sing], Lexeme_Det_Features, Det_Features).
+en_lex(those, det, Det_Features):- en_dic(that, det, Lexeme_Det_Features), unify([num:plur], Lexeme_Det_Features, Det_Features).
+en_lex(this, det, Det_Features):- en_dic(this, det, Lexeme_Det_Features), unify([num:sing], Lexeme_Det_Features, Det_Features).
+en_lex(these, det, Det_Features):- en_dic(this, det, Lexeme_Det_Features), unify([num:plur], Lexeme_Det_Features, Det_Features).
 
 % Nouns
 en_dic(boy, n, [pred:boy, num:sing]).

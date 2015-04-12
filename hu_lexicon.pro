@@ -5,9 +5,17 @@
 hu_lex(V_word, v, V_Features) :- hu_dic(V_word, v, V_Features), extract(V_Features, tense:past).
 
 % Determiners
-hu_lex(az, det, [num:sing]).
-hu_lex(azok, det, [num:plur]).
-hu_lex(a, det, [num:_]).
+% hu_dic(Lexeme, det, Lexeme_Det_Features).
+hu_dic(a, det, [pred:a, num:_]).
+hu_dic(az, det, [pred:az]).
+hu_dic(ez, det, [pred:ez]).
+
+% hu_lex(MorphologizedAtom, det, Det_Features).
+hu_lex(a, det, Det_Features):- hu_dic(a, det, Det_Features).
+hu_lex(az, det, Det_Features):- hu_dic(az, det, Lexeme_Det_Features), unify([num:sing], Lexeme_Det_Features, Det_Features).
+hu_lex(azok, det, [pred:az, num:plur]).
+hu_lex(ez, det, [pred:ez, num:sing]).
+hu_lex(ezek, det, [pred:ez, num:plur]).
 
 % Nouns
 % hu_dic(Lexeme, n, N_Features, MorphologyFeatures). 
@@ -27,7 +35,7 @@ lengthen_ending_vowel(UnlengthenedWord, LengthenedWord):-
   ).
 
 % Pluralize Nouns
-% Plural morphology exceptions
+% Irregular morphology exceptions
 hu_plur(halak, hal).
 
 % Plural morphology rules
