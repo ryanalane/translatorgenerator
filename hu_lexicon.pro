@@ -13,16 +13,17 @@ hu_dic(ez, det, [pred:ez]).
 % hu_lex(MorphologizedAtom, det, Det_Features).
 hu_lex(a, det, Det_Features):- hu_dic(a, det, Det_Features).
 hu_lex(az, det, Det_Features):- hu_dic(az, det, Lexeme_Det_Features), unify([num:sing], Lexeme_Det_Features, Det_Features).
-hu_lex(azok, det, [pred:az, num:plur]).
-hu_lex(ez, det, [pred:ez, num:sing]).
-hu_lex(ezek, det, [pred:ez, num:plur]).
+hu_lex(azok, det, Det_Features):- hu_dic(az, det, Lexeme_Det_Features), unify([num:plur], Lexeme_Det_Features, Det_Features).
+hu_lex(ez, det, Det_Features):- hu_dic(ez, det, Lexeme_Det_Features), unify([num:sing], Lexeme_Det_Features, Det_Features).
+hu_lex(ezek, det, Det_Features):- hu_dic(ez, det, Lexeme_Det_Features), unify([num:plur], Lexeme_Det_Features, Det_Features).
 
 % Nouns
 % hu_dic(Lexeme, n, N_Features, MorphologyFeatures). 
 hu_dic(fiú, n, [pred:fiú], [begin:consonant, end:vowel, harmony:back]).
 hu_dic(torta, n, [pred:torta], [begin:consonant, end:vowel_lengthen, harmony:back]).
 hu_dic(hal, n, [pred:hal], [begin:consonant, end:consonant, harmony:back]).
-hu_dic(szemüveg, n, [pred:szemüveg], [begin:consonant, end:consonant, harmony:unrounded]).
+hu_dic(szem, n, [pred:szem], [begin:consonant, end:consonant, harmony:unrounded]).
+hu_dic(asztal, n, [pred:asztal], [begin:vowel, end:consonant, harmony:back]).
 
 %%% Hungarian Morphological Rules
 lengthen_ending_vowel(UnlengthenedWord, LengthenedWord):-
