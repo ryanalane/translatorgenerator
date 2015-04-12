@@ -26,8 +26,11 @@ en_lex(these, det, Det_Features):- en_dic(this, det, Lexeme_Det_Features), unify
 % Nouns
 en_dic(boy, n, [pred:boy, num:sing]).
 en_dic(boys, n, [pred:boy, num:plur]).
-en_dic(cake, n, [pred:cake]).
-en_dic(fish, n, [pred:fish]).
+en_dic(cake, n, [pred:cake, num:sing]).
+en_dic(cakes, n, [pred:cake, num:plur]).
+en_dic(glass, n, [pred:glass, num:sing]).
+en_dic(table, n, [pred:table, num:sing]).
+en_dic(tables, n, [pred:table, num:plur]).
 
 % Verbs
 en_dic(buy, v, [pred:buy(subj,obj)]).
