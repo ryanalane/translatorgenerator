@@ -2,6 +2,7 @@
 %%% Interlingua --> English lexical pairs
 
 % lexical translations
+% en_lex_pair(interlingua, english).
 
 % determiners
 en_lex_pair(the, the).
