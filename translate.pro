@@ -27,8 +27,8 @@ translate_sentences([SourceSentence|RestOfSourceSentences], [TargetSentence|Rest
 % translation of lexical entries 
 lex_translate([],[]).
 lex_translate([pred:SourceWord|SourceRest], [pred:TargetWord|TargetRest]) :-
-    en_lex_pair(Sememe, SourceWord),
-    hu_lex_pair(Sememe, TargetWord),
+    en_lex_pair(InterlingaWord, SourceWord),
+    hu_lex_pair(InterlingaWord, TargetWord),
     !,
     lex_translate(SourceRest, TargetRest).
 lex_translate([Attribute:SourceValue|SourceRest], [Attribute:TargetValue|TargetRest]) :-
