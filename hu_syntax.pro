@@ -5,7 +5,7 @@
 
 % S -> NP(up.subj=down / up.num=down.num), VP(up=down)
 hu_s(s_node(NP_node, VP_node), S_Fstruct) --> hu_np(NP_node, NP_Fstruct),
-                                { unify([],[subj:NP_Fstruct, num:Num], Partial_Fstruct_1),
+                                { unify([], [subj:NP_Fstruct, num:Num], Partial_Fstruct_1),
                                 extract(NP_Fstruct, num:Num) },
 
                                 hu_vp(VP_node, VP_Fstruct),

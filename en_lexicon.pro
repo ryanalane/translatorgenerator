@@ -36,4 +36,6 @@ en_dic(tables, n, [pred:table, num:plur]).
 en_dic(sleep, v, [pred:sleep(subj)]).
 
 % Irregular past-tense Verbs
-en_lex(slept, v, V_Features) :- en_dic(sleep, v,  Root_V_Features), unify([tense:past], Root_V_Features, V_Features).
+en_lex(slept, v, V_Features) :-
+  en_dic(sleep, v,  Root_V_Features),
+  unify([tense:past], Root_V_Features, V_Features).
