@@ -1,9 +1,6 @@
 %%% 'hu_lexicon.pro'
 %%% Hungarian lexicon
 
-
-hu_lex(V_word, v, V_Features) :- hu_dic(V_word, v, V_Features), extract(V_Features, tense:past).
-
 % Determiners
 % hu_dic(Lexeme, det, Lexeme_Det_Features, Lexeme_Morphology_Features).
 hu_dic(a, det, [pred:a, num:_], []).
@@ -106,4 +103,9 @@ hu_lex(Lexeme, n, N_Features, Lexeme_Morphology_Features) :-
 hu_dic(alszik, v, [pred:alszik(subj)]).
 
 % Past-tense Verbs
-hu_lex(aludt, v, V_Features) :- hu_dic(alszik, v, Root_V_Features), unify([tense:past], Root_V_Features, V_Features).
+% [person:] feature is only set for person:first or person:second, otherwise third-person is implied
+hu_lex(aludt, v, V_Features) :- hu_dic(alszik, v, Root_V_Features),
+  unify([tense:past, num:sing], Root_V_Features, V_Features).
+hu_lex(aludtak, v, V_Features) :-
+  hu_dic(alszik, v, Root_V_Features),
+  unify([tense:past, num:plur], Root_V_Features, V_Features).
