@@ -16,15 +16,31 @@ en_lex(these, det, Det_Features):- en_dic(this, det, Lexeme_Det_Features), unify
 
 
 % Nouns
-en_dic(boy, n, [pred:boy, num:sing]).
-en_dic(boys, n, [pred:boy, num:plur]).
-en_dic(cake, n, [pred:cake, num:sing]).
-en_dic(cakes, n, [pred:cake, num:plur]).
-en_dic(eye, n, [pred:eye, num:sing]).
-en_dic(table, n, [pred:table, num:sing]).
-en_dic(tables, n, [pred:table, num:plur]).
+en_dic(boy, n, [pred:boy], []).
+en_dic(coffee, n, [pred:coffee], []).
+en_dic(eye, n, [pred:eye], []).
+en_dic(table, n, [pred:table], []).
 
-en_lex(N_word, n, Features) :- en_dic(N_word, n, Features).
+%%% English Morphological Rules
+
+% Pluralize Nouns
+% Irregular morphology exceptions
+hu_plur(halak, hal).
+
+% Plural morphology rules
+en_plur(Plural, Lexeme) :-
+  en_dic(Lexeme, n, _, MorphologyFeatures),
+  atom_concat(Lexeme, 's', Plural).
+
+% Match Plural/Singular lexical entries
+en_lex(Plural, n, N_Features, Lexeme_Morphology_Features) :-
+  en_plur(Plural, Lexeme),
+  en_dic(Lexeme, n, Lexeme_N_Features, Lexeme_Morphology_Features),
+  unify([num:plur], Lexeme_N_Features, N_Features).
+
+en_lex(Lexeme, n, N_Features, Lexeme_Morphology_Features) :- 
+  en_dic(Lexeme, n, Lexeme_N_Features, Lexeme_Morphology_Features),
+  unify([num:sing], Lexeme_N_Features, N_Features).
 
 % Root Verbs
 en_dic(sleep, v, [pred:sleep(subj)]).

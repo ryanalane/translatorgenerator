@@ -1,4 +1,4 @@
-%%% English syntax
+%%% English syntax parser
 %%% adapted from file "lfg.pro" from "Prolog for Natural Language Processing", Annie Gal, et al., 1991
 %%% LFG-like unification grammar
 
@@ -28,7 +28,7 @@ en_np(np_node(Det_node, N_node), NP_Fstruct)  --> en_det(Det_node, Det_Fstruct),
 en_vp(vp_node(v_node(V_node)), VP_Fstruct) --> en_v(V_node, VP_Fstruct).
 
 % rules for terminal symbols
-en_n(n_node(N_word), N_Fstruct) --> [N_word], { en_lex(N_word, n, N_Fstruct) }.
+en_n(n_node(N_word), N_Fstruct) --> [N_word], { en_lex(N_word, n, N_Fstruct, _) }.
 en_v(v_node(V_word), V_Fstruct) --> [V_word], { en_lex(V_word, v, V_Fstruct) }.
 en_det(det_node(D_word), D_Fstruct) --> [D_word], { en_lex(D_word, det, D_Fstruct) }.
 
