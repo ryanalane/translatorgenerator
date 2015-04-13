@@ -1,6 +1,8 @@
 %%% 'en_lexicon.pro'
 %%% English lexicon
 
+:- reconsult('en_morphology.pro').
+
 % Determiners
 % en_dic(Lexeme, det, Lexeme_Det_Features).
 en_dic(the, det, [pred:the, num:_]).
@@ -20,16 +22,6 @@ en_dic(boy, n, [pred:boy], []).
 en_dic(coffee, n, [pred:coffee], []).
 en_dic(eye, n, [pred:eye], []).
 en_dic(table, n, [pred:table], []).
-
-%%% English Morphological Rules
-
-% Pluralize Nouns
-% Irregular morphology exceptions
-
-% Plural morphology rules
-en_plur(Plural, Lexeme) :-
-  en_dic(Lexeme, n, _, MorphologyFeatures),
-  atom_concat(Lexeme, 's', Plural).
 
 % Match Plural/Singular lexical entries
 en_lex(Plural, n, N_Features, Lexeme_Morphology_Features) :-
