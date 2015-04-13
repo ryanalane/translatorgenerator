@@ -101,6 +101,12 @@ hu_lex(Lexeme, n, N_Features, Lexeme_Morphology_Features) :-
 
 % Root Verbs
 hu_dic(alszik, v, [pred:alszik(subj)]).
+hu_dic(áll, v, [pred:áll(subj)]).
+
+% Present-tense Verbs
+hu_lex(áll, v, V_Features) :-
+  hu_dic(áll, v, Root_V_Features),
+  unify([num:sing], Root_V_Features, V_Features).
 
 % Past-tense Verbs
 % [person:] feature is only set for person:first or person:second, otherwise third-person is implied
@@ -109,3 +115,4 @@ hu_lex(aludt, v, V_Features) :- hu_dic(alszik, v, Root_V_Features),
 hu_lex(aludtak, v, V_Features) :-
   hu_dic(alszik, v, Root_V_Features),
   unify([tense:past, num:plur], Root_V_Features, V_Features).
+

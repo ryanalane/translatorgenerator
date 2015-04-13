@@ -16,3 +16,4 @@ hu_lex_pair(table, asztal).
 
 % verbs
 hu_lex_pair(sleep(subj), alszik(subj)).
+hu_lex_pair(stand(subj), áll(subj)).

@@ -16,3 +16,4 @@ en_lex_pair(table, table).
 
 % verbs
 en_lex_pair(sleep(subj), sleep(subj)).
+en_lex_pair(stand(subj), stand(subj)).
