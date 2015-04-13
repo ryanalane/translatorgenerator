@@ -25,7 +25,6 @@ en_dic(table, n, [pred:table], []).
 
 % Pluralize Nouns
 % Irregular morphology exceptions
-hu_plur(halak, hal).
 
 % Plural morphology rules
 en_plur(Plural, Lexeme) :-
