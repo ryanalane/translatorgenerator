@@ -10,8 +10,7 @@ en_lex_pair(this, this).
 
 % nouns
 en_lex_pair(boy, boy).
-en_lex_pair(cake, cake).
-en_lex_pair(fish, fish).
+en_lex_pair(coffee, coffee).
 en_lex_pair(eye, eye).
 en_lex_pair(table, table).
 

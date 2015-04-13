@@ -10,8 +10,7 @@ hu_lex_pair(this, ez).
 
 % nouns
 hu_lex_pair(boy, fiú).
-hu_lex_pair(cake, torta).
-hu_lex_pair(fish, hal).
+hu_lex_pair(coffee, káve).
 hu_lex_pair(eye, szem).
 hu_lex_pair(table, asztal).
 

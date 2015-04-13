@@ -28,16 +28,12 @@ en_dic(boy, n, [pred:boy, num:sing]).
 en_dic(boys, n, [pred:boy, num:plur]).
 en_dic(cake, n, [pred:cake, num:sing]).
 en_dic(cakes, n, [pred:cake, num:plur]).
-en_dic(glass, n, [pred:glass, num:sing]).
+en_dic(eye, n, [pred:eye, num:sing]).
 en_dic(table, n, [pred:table, num:sing]).
 en_dic(tables, n, [pred:table, num:plur]).
 
 % Verbs
-en_dic(buy, v, [pred:buy(subj,obj)]).
-en_dic(die, v, [pred:die(subj)]).
-en_dic(eat, v, [pred:eat(subj, optional(obj))]).
 en_dic(sleep, v, [pred:sleep(subj)]).
 
 % Irregular past-tense Verbs
-en_lex(bought, v, V_Features) :- en_dic(buy, v, Root_V_Features), unify([tense:past], Root_V_Features, V_Features).
 en_lex(slept, v, V_Features) :- en_dic(sleep, v,  Root_V_Features), unify([tense:past], Root_V_Features, V_Features).

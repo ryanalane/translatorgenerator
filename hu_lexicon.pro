@@ -36,6 +36,7 @@ hu_lex(ezek, det, Det_Features, Lexeme_Morphology_Features) :-
   hu_dic(ez, det, Lexeme_Det_Features, Lexeme_Morphology_Features),
   unify([num:plur], Lexeme_Det_Features, Det_Features).
 
+% Helper Determiners
 hu_lex(a, helper_det, Lexeme_Det_Features, Det_Morphology_Features) :-
   hu_dic(a, helper_det, Lexeme_Det_Features, Lexeme_Morphology_Features),
   unify([precedes:consonant], Lexeme_Morphology_Features, Det_Morphology_Features).
@@ -47,8 +48,7 @@ hu_lex(az, helper_det, Lexeme_Det_Features, Det_Morphology_Features) :-
 % Nouns
 % hu_dic(Lexeme, n, N_Features, MorphologyFeatures). 
 hu_dic(fiú, n, [pred:fiú], [begin:consonant, end:vowel, harmony:back]).
-hu_dic(torta, n, [pred:torta], [begin:consonant, end:vowel_lengthen, harmony:back]).
-hu_dic(hal, n, [pred:hal], [begin:consonant, end:consonant, harmony:back]).
+hu_dic(káve, n, [pred:káve], [begin:consonant, end:vowel_lengthen, harmony:back]).
 hu_dic(szem, n, [pred:szem], [begin:consonant, end:consonant, harmony:unrounded]).
 hu_dic(asztal, n, [pred:asztal], [begin:vowel, end:consonant, harmony:back]).
 
@@ -103,11 +103,7 @@ hu_lex(Lexeme, n, N_Features, Lexeme_Morphology_Features) :-
   unify([num:sing], Lexeme_N_Features, N_Features).
 
 % Root Verbs
-hu_dic(vesz, v, [pred:vesz(subj,obj)]).
-hu_dic(meghal, v, [pred:meghal(subj)]).
-hu_dic(eszik, v, [pred:eszik(subj, optional(obj))]).
 hu_dic(alszik, v, [pred:alszik(subj)]).
 
 % Past-tense Verbs
-hu_lex(vett, v, V_Features) :- hu_dic(vesz, v, Root_V_Features), unify([tense:past], Root_V_Features, V_Features).
 hu_lex(aludt, v, V_Features) :- hu_dic(alszik, v, Root_V_Features), unify([tense:past], Root_V_Features, V_Features).
