@@ -47,7 +47,7 @@ hu_lex(az, helper_det, Lexeme_Det_Features, Det_Morphology_Features) :-
 % Nouns
 % hu_dic(Lexeme, n, N_Features, MorphologyFeatures). 
 hu_dic(fiú, n, [pred:fiú], [begin:consonant, end:vowel, harmony:back]).
-hu_dic(káve, n, [pred:káve], [begin:consonant, end:vowel_lengthen, harmony:back]).
+hu_dic(kávé, n, [pred:kávé], [begin:consonant, end:vowel, harmony:back]).
 hu_dic(szem, n, [pred:szem], [begin:consonant, end:consonant, harmony:unrounded]).
 hu_dic(asztal, n, [pred:asztal], [begin:vowel, end:consonant, harmony:back]).
 
