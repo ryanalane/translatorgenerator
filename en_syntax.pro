@@ -21,9 +21,6 @@ en_np(np_node(Det_node, N_node), NP_Fstruct)  --> en_det(Det_node, Det_Fstruct),
                                     en_n(N_node, N_Fstruct),
                                     { unify(Partial_Fstruct_1, N_Fstruct, NP_Fstruct) }.
 
-% VP -> V(up=down), NP(up.obj=down) (transitive verb phrase)
-% en_vp(vp_node(v_node(V_node), NP_node), VP_Fstruct) -->
-
 % VP -> V(up=down) (intransitive verb phrase)
 en_vp(vp_node(v_node(V_node)), VP_Fstruct) --> en_v(V_node, VP_Fstruct).
 
