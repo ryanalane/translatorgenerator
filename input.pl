@@ -1,3 +1,5 @@
+%%% 'input.pl'
+%%% predicates for tokenizing input
 delete_last_element([_],[]).
 delete_last_element([H|T], [H|MinusLast]) :-
   delete_last_element(T, MinusLast).
