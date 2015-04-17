@@ -1,4 +1,5 @@
-% syntax verification predicates
+%%% 'verify_syntax.pl'
+%%% syntax verification predicates from "Prolog for Natural Language Processing", Annie Gal, et al., 1991
 :- reconsult('unify.pl').
 
 complete(Fstruct, Predicate) :- Predicate=..[_|Frame], satisfied(Frame, Fstruct).
