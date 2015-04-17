@@ -1,3 +1,4 @@
+%%% 'en_syntax.pl'
 %%% English syntax parser
 %%% adapted from file "lfg.pl" from "Prolog for Natural Language Processing", Annie Gal, et al., 1991
 %%% LFG-like unification grammar
