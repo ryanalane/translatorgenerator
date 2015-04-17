@@ -1,5 +1,5 @@
 % syntax verification predicates
-:- reconsult('unify.pro').
+:- reconsult('unify.pl').
 
 complete(Fstruct, Predicate) :- Predicate=..[_|Frame], satisfied(Frame, Fstruct).
 

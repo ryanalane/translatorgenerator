@@ -1,7 +1,7 @@
-%%% 'hu_lexicon.pro'
+%%% 'hu_lexicon.pl'
 %%% Hungarian lexicon
 
-:- reconsult('hu_morphology.pro').
+:- reconsult('hu_morphology.pl').
 
 % Determiners
 % hu_dic(Lexeme, det, Lexeme_Det_Features, Lexeme_Morphology_Features).

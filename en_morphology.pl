@@ -1,4 +1,4 @@
-%%% 'en_morphology.pro'
+%%% 'en_morphology.pl'
 %%% English Morphology Rules
 
 % Pluralize Nouns

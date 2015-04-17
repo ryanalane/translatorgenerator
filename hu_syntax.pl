@@ -1,7 +1,7 @@
-%%% 'hu_syntax.pro'
+%%% 'hu_syntax.pl'
 %%% LFG-like unification grammar for Hungarian
-:- reconsult('unify.pro').
-:- reconsult('hu_lexicon.pro').
+:- reconsult('unify.pl').
+:- reconsult('hu_lexicon.pl').
 
 % S -> NP(up.subj=down / up.num=down.num), VP(up=down)
 hu_s(s_node(NP_node, VP_node), S_Fstruct) --> hu_np(NP_node, NP_Fstruct),

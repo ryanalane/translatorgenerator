@@ -1,5 +1,5 @@
 %%% English syntax parser
-%%% adapted from file "lfg.pro" from "Prolog for Natural Language Processing", Annie Gal, et al., 1991
+%%% adapted from file "lfg.pl" from "Prolog for Natural Language Processing", Annie Gal, et al., 1991
 %%% LFG-like unification grammar
 
 % S -> NP(up.subj=down / up.num=down.num), VP(up=down)
@@ -30,13 +30,13 @@ en_v(v_node(V_word), V_Fstruct) --> [V_word], { en_lex(V_word, v, V_Fstruct) }.
 en_det(det_node(D_word), D_Fstruct) --> [D_word], { en_lex(D_word, det, D_Fstruct) }.
 
 % English lexicon
-:- reconsult('en_lexicon.pro').
+:- reconsult('en_lexicon.pl').
 
 % syntax verification predicates
-:- reconsult('verify_syntax.pro').
+:- reconsult('verify_syntax.pl').
 
 % feature list unification
-:- reconsult('unify.pro').
+:- reconsult('unify.pl').
 
 % feature extraction
-:- reconsult('extract.pro').
+:- reconsult('extract.pl').

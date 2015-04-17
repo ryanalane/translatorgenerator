@@ -1,4 +1,4 @@
-%%% 'hu_morphology.pro'
+%%% 'hu_morphology.pl'
 %%% Hungarian Morphological Rules
 
 lengthen_ending_vowel(UnlengthenedWord, LengthenedWord):-

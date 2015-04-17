@@ -1,4 +1,4 @@
-%%% 'en_lexical_pairs.pro'
+%%% 'en_lexical_pairs.pl'
 %%% Interlingua --> English lexical pairs
 
 % lexical translations

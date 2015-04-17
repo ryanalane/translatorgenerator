@@ -1,7 +1,7 @@
-%%% 'en_lexicon.pro'
+%%% 'en_lexicon.pl'
 %%% English lexicon
 
-:- reconsult('en_morphology.pro').
+:- reconsult('en_morphology.pl').
 
 % Determiners
 % en_dic(Lexeme, det, Lexeme_Det_Features).

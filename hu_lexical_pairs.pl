@@ -1,4 +1,4 @@
-%%% 'hu_lexical_pairs.pro'
+%%% 'hu_lexical_pairs.pl'
 %%% Interlingua --> Hungarian lexical pairs
 
 % lexical translations
