@@ -1,5 +1,22 @@
 # translatorgenerator
 
+# Run
+1. Install [swi-prolog]()
+
+2. Run in project directory:
+`$ swipl translate.pl`
+
+3. Play with translations
+English to Hungarian:
+`?- translate('the boy slept', Hungarian).`
+
+Hungarian to English:
+`?- translate(English, 'a fiúk aludtak').`
+
+# Corpus
+English words available: `en_lexical_pairs.pl`
+Hungarian words available: `hu_lexical_pairs.pl`
+
 # FAQ
 
 1. What's the difference between a "lexical" and "dictionary" entries (i.e., `en_lex()` vs. `en_dic()`)?
